@@ -59,6 +59,8 @@ app.use('/', function(req, res, next) {
 });
 
 
+app.use('/test', express.static(path.join(__dirname, './test')));
+
 // Errors
 //// Not found
 app.use(function(req, res, next) {
