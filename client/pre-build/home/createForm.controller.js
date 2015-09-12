@@ -4,7 +4,7 @@ app.controller('createFormController', function($scope, HomeFactory) {
     gameName: null,
   };
 
-  $scope.createGame = function() {
+  $scope.createAGame = function() {
     console.log('hi');
     HomeFactory.createGame({name: $scope.createForm.gameName, players: [$scope.createForm.playerName]}).then(function(game) {
       console.log(game.name);

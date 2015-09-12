@@ -1,8 +1,8 @@
 <section id="home">
 	<h1>Coup</h1>
 	<div><button ng-click="showCreateForm = !showCreateForm">Create Game</button></div>
-	<div ng-show="showCreateForm">
-		<form name="createGame" ng-controller="createFormController" ng-submit="createGame()">
+	<div ng-show="showCreateForm" ng-controller="createFormController">
+		<form name="createGame" ng-submit="createAGame()">
 			<label for="playerName">Your Name:</label>
 			<input name="playerName" type="text" ng-model="createForm.playerName" required ng-maxlength="15" />
 			<label for="gameName">Game Name:</label>
