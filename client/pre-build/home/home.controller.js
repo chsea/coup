@@ -1,31 +1,7 @@
-app.controller('HomeController', function($scope, $http) {
-  function Contessa() {
-    this.title = 'Contessa';
-  }
+app.controller('HomeController', function($scope, HomeFactory) {
+  $scope.showCreateForm = false;
 
-  function Duke() {
-    this.title = 'Duke';
-  }
-
-  var deck = {
-    cards: [
-      new Contessa(),
-      new Contessa(),
-      new Contessa(),
-      new Duke(),
-      new Duke(),
-      new Duke(),
-    ]
+  $scope.showGames = function() {
+    HomeFactory.getGames().then();
   };
-
-  $scope.players = [
-    {
-      name: 'player1',
-      cards: [deck.cards[0], deck.cards[3]]
-    },
-    {
-      name: 'player2',
-      cards: [deck.cards[0], deck.cards[3]]
-    }
-  ];
 });

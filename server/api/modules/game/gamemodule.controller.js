@@ -4,7 +4,7 @@ var Game = require('./gamemodule.model');
 module.exports = {
   index: function (req, res) {
     Game
-      .find()
+      .find({complete: false, inProgress: false})
       .exec()
       .then(function(games) {
         res.send(games);
