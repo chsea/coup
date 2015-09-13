@@ -1,17 +1,38 @@
 
+
+
 var socket = io(window.location.href);
 
 
 socket.on('connect', function(){
-	console.log("I joined the game!");
+	console.log("Broswer - I have joined the game!!");
 });
 
-socket.on('sendDrawToAll', function(start, end, strokeColor) {
-  whiteboard.draw(start, end, strokeColor);
+socket.on('sendActionToAll', function(currentPlayer, targetPlayer, action) {
+  gameboard.emit(currentPlayer, targetPlayer, action);
 });
 
-whiteboard.on('draw', function(start, end, strokeColor){
+gameboard.on('block', function(currentPlayer, targetPlayer){
 
-  socket.emit('sendDrawToServer', start, end, strokeColor);
+  socket.emit('sendBlockToServer', currentPlayer, targetPlayer);
 });
 
+gameboard.on('callOut', function(currentPlayer, targetPlayer){
+
+  socket.emit('sendCallOutToServer', currentPlayer, targetPlayer);
+});
+
+gameboard.on('coup', function(currentPlayer, targetPlayer){
+
+  socket.emit('sendCoupToServer', currentPlayer, targetPlayer);
+});
+
+gameboard.on('income', function(currentPlayer, amount){
+
+  socket.emit('sendIncomeToServer', currentPlayer, amount);
+});
+
+gameboard.on('allow', function(player, confirmation){
+
+  socket.emit('sendAllowToServer', player, confirmation);
+});
